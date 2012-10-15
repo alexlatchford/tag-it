@@ -372,14 +372,15 @@
             }
             // Animate the removal.
             if (animate) {
+                var that = this;
                 tag.fadeOut('fast').hide('blind', {direction: 'horizontal'}, 'fast', function(){
                     tag.remove();
+                    this._trigger('afterTagRemoved', null, tag);
                 }).dequeue();
             } else {
                 tag.remove();
+                this._trigger('afterTagRemoved', null, tag);
             }
-
-            this._trigger('afterTagRemoved', null, tag);
         },
 
         removeAll: function() {
