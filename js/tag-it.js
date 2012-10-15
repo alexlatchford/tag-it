@@ -2,6 +2,7 @@
 * jQuery UI Tag-it!
 *
 * @version v2.0 (06/2011)
+* Customised by Alex Latchford for AAM in 15-10-2012
 *
 * Copyright 2011, Levy Carneiro Jr.
 * Released under the MIT license.
