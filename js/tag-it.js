@@ -344,13 +344,14 @@
                 tag.append('<input type="hidden" style="display:none;" value="' + escapedValue + '" name="' + this.options.itemName + field + '[]" />');
             }
 
-            this._trigger('onTagAdded', null, tag);
+            this._trigger('beforeTagAdded', null, tag);
 
             // Cleaning the input.
             this._tagInput.val('');
 
             // insert tag
             this._tagInput.parent().before(tag);
+            this._trigger('afterTagAdded', null, tag);
         },
         
         removeTag: function(tag, animate) {
@@ -358,7 +359,7 @@
 
             tag = $(tag);
 
-            this._trigger('onTagRemoved', null, tag);
+            this._trigger('beforeTagRemoved', null, tag);
 
             if (this.options.singleField) {
                 var tags = this.assignedTags();
@@ -376,6 +377,8 @@
             } else {
                 tag.remove();
             }
+
+            this._trigger('afterTagRemoved', null, tag);
         },
 
         removeAll: function() {
