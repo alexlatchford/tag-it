@@ -210,7 +210,9 @@
                     }
                 }).blur(function(e){
                     // Create a tag when the element loses focus (unless it's empty).
-                    that.createTag(that._cleanedInput());
+                    if(0 === that.options.availableTags.length && null === that.options.tagSource){// Only when not using autocomplete
+                        that.createTag(that._cleanedInput());
+                    }
                 });
                 
 
