@@ -80,7 +80,7 @@
             onTagClicked: null
         },
 
-
+        init: true,
         _create: function() {
             // for handling static scoping inside callbacks
             var that = this;
@@ -228,6 +228,7 @@
                     }
                 });
             }
+            this.init = false;
         },
 
         _cleanedInput: function() {
@@ -339,14 +340,16 @@
                 tag.append('<input type="hidden" style="display:none;" value="' + escapedValue + '" name="' + this.options.itemName + field + '[]" />');
             }
 
-            this._trigger('beforeTagAdded', null, tag);
+            if (!this.init)
+                this._trigger('beforeTagAdded', null, tag);
 
             // Cleaning the input.
             this._tagInput.val('');
 
             // insert tag
             this._tagInput.parent().before(tag);
-            this._trigger('afterTagAdded', null, tag);
+            if (!this.init)
+                this._trigger('afterTagAdded', null, tag);
         },
         
         removeTag: function(tag, animate) {
